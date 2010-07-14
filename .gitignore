@@ -1,0 +1,9 @@
+log/*
+tmp/*
+tmp/**/*
+.DS_Store
+._*
+vendor/rails/**/*
+vendor/rails/*
+config/database.yml
+test/**/*
