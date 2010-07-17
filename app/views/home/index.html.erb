@@ -1,0 +1,13 @@
+<%= javascript_include_tag "main" %>
+<% javascript_tag do %>
+  Ext.onReady(function() {
+    Global.menu_panel.addItem({
+      url: '<%= adminships_url %>',
+      text: 'Администрирование'
+    });
+  });
+<% end %>
+<div id="header">
+  <h1>High Five Studio Admin Area</h1>
+  <%= link_to "Выйти", logout_url, :class => "logout" %>
+</div>

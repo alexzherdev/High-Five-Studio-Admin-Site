@@ -1,6 +1,5 @@
 body {
-  margin: 10px auto;
-  width: 1000px;
+  margin: 0px auto;
 }
 
 .x-panel-mc {
@@ -15,7 +14,7 @@ a {
 
 .login-container {
   width: 350px;
-  margin: 0px auto;
+  margin: 100px auto;
 }
 
 .login-actions-container {
@@ -30,5 +29,25 @@ a {
 
 .signup-container {
   width: 350px;
-  margin: 0px auto;
+  margin: 100px auto;
+}
+
+/*********** MAIN **********/
+
+#header {
+  padding: 6px 10px 0px;
+  padding-left: 10px;
+  background: url('../images/hd-bg.gif') repeat-x;
+}
+
+#header h1 {
+  color: white;
+  font-family: arial;
+  font-size: 20px;
+  float: left;
+}
+
+#header .logout {
+  color: white;
+  float: right;
 }

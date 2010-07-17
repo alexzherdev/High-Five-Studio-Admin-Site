@@ -8,18 +8,18 @@ class ApplicationController < ActionController::Base
   helper :all
 
   filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user, :authorized?
+  helper_method :current_user, :logged_in?
   
   before_filter :login_required
 
   protected
   
-  def authorized?(controller_path = self.class.controller_path, action_name = params[:action])
+  def logged_in?
     not current_user.blank?
   end
   
   def login_required
-    authorized? || access_denied
+    logged_in? || access_denied
   end
   
   def access_denied
