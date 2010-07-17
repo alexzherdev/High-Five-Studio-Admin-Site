@@ -1,0 +1,14 @@
+<%= javascript_include_tag "login" %>
+<% javascript_tag do %>
+  Ext.onReady(function() {
+    createLoginPanel({
+      url: '<%= user_sessions_path %>',
+      token: '<%= form_authenticity_token %>'
+    });
+  });
+<% end %>
+<div id="login_container" class="login-container"></div>
+<div id="actions_container" class="login-actions-container">
+  <%= link_to "Регистрация", new_user_path %>
+  <div id="login_button" class="login-button"></div>
+</div>

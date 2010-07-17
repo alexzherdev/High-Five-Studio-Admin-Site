@@ -1,0 +1,10 @@
+<%= javascript_include_tag "signup" %>
+<% javascript_tag do %>
+  Ext.onReady(function() {
+    createSignupPanel({
+      url: '<%= users_path %>',
+      token: '<%= form_authenticity_token %>'
+    });
+  });
+<% end %>
+<div id="signup_container" class="signup-container"></div>
