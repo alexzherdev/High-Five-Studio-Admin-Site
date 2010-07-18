@@ -48,6 +48,7 @@ a {
 }
 
 #header .logout {
+  font-family: arial;
   color: white;
   float: right;
 }

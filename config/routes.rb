@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
   map.resources :user_sessions
   map.resources :users
-  map.resources :adminships
+  map.resources :adminships, :collection => { :by_month => :get, :save => :post }
   
   map.login '/login', :controller => "user_sessions", :action => "new"
   map.logout '/logout', :controller => "user_sessions", :action => "destroy"

@@ -1,5 +1,52 @@
-<%= javascript_include_tag "adminships" %>
 <% javascript_tag do %>
-
+  Ext.onReady(function() {
+    createAdminshipsPanel({
+      cm: [
+        { header: 'Число', width: 50 }
+        <% @users.each_with_index do |user, i| %>,
+        { header: '<%= user.name %>', id: <%= user.id %>, align: 'center', dataIndex: '<%= user.id %>', 
+          editor: new Ext.form.NumberField({ allowNegative: false, maxValue: 24 })
+        }
+        <% end %>
+      ],
+      store: {
+        root: 'adminships',
+        autoSave: true,
+        idProperty: 'date',
+        proxy: new Ext.data.HttpProxy({
+          api: {
+            read: { url: '<%= by_month_adminships_path %>', method: 'GET' },
+            update: '<%= save_adminships_path %>'
+          }
+        }),
+        fields: [
+          { name: 'date' },
+          <% @users.each_with_index do |user, i| %>,
+          { name: '<%= user.id %>' }
+          <% end %>
+        ],
+        sortInfo: {
+          field: 'date',
+          direction: 'ASC'
+        },
+        writer: new Ext.data.JsonWriter({
+          encode: false,
+          listful: false,
+          writeAllFields: true
+        }),
+        listeners: {
+          beforeload: function(store) {
+            store.baseParams = {
+              year: Global.getAdminYear(),
+              month: Global.getAdminMonth()
+            }
+          }
+        }        
+      },
+      initial_year: <%= Time.now.year %>,
+      initial_month: <%= Time.now.month %>
+    });
+  });
 <% end %>
+
 <div id="adminships_container"></div>

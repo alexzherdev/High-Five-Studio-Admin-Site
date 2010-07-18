@@ -1,5 +1,6 @@
 Ext.onReady(function() {
   Global.menu_panel = new Ext.tree.TreePanel({
+    title: 'Меню',
     region: 'west',
     split: true,
     width: 225,
@@ -28,14 +29,15 @@ Ext.onReady(function() {
   });
   
   Global.menu_panel.getSelectionModel().on('selectionchange', function(sm, node) {
-    content_panel.load({ url: node.id, method: 'GET', scripts: true });
+    Global.content_container.load({ url: node.id, method: 'GET', scripts: true });
   });
   
-  var content_panel = new Ext.Panel({
+  Global.content_container = new Ext.Panel({
+    layout: 'fit',
     region: 'center'
   });
   
-  var viewport = new Ext.Viewport({
+  Global.viewport = new Ext.Viewport({
     layout: 'border',
     items: [
       new Ext.BoxComponent({ // raw element
@@ -44,7 +46,7 @@ Ext.onReady(function() {
         height: 32
       }),
       Global.menu_panel,
-      content_panel
+      Global.content_container
     ]
   });
 });
