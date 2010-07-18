@@ -2,10 +2,19 @@
   Ext.onReady(function() {
     createAdminshipsPanel({
       cm: [
-        { header: 'Число', width: 50 }
+        { header: 'Число', width: 50,
+          summaryRenderer: function(v, params, data){        
+            return '<b>Итого</b>';
+          }
+        }
         <% @users.each_with_index do |user, i| %>,
         { header: '<%= user.name %>', id: <%= user.id %>, align: 'center', dataIndex: '<%= user.id %>', 
-          editor: new Ext.form.NumberField({ allowNegative: false, maxValue: 24 })
+          type: 'int',
+          editor: new Ext.form.NumberField({ allowNegative: false, maxValue: 24 }),
+          summaryType: 'sum',
+          summaryRenderer: function(v, params, data){        
+            return '<b>' + v + '</b>';
+          }
         }
         <% end %>
       ],
@@ -48,5 +57,3 @@
     });
   });
 <% end %>
-
-<div id="adminships_container"></div>

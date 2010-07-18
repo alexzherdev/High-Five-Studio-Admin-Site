@@ -11,11 +11,18 @@ createAdminshipsPanel = function(config) {
   
   var adminships_store = new Ext.data.JsonStore(config.store);
   
+  var summary = new Ext.ux.grid.GroupSummary();
+  
+  adminships_store.on('load', function() {
+    summary.refreshSummaryById();
+  });
   Global.adminships_panel = new Ext.grid.EditorGridPanel({
     title: 'Администрирование',
     autoScroll: true,
     cm: adminships_cm,
     store: adminships_store,
+    clicksToEdit: 1,
+    plugins: summary,
     tbar: [{
       text: '',
       iconCls: 'x-tbar-page-prev',

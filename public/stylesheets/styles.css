@@ -10,6 +10,29 @@ a {
   color: #666;
 }
 
+.x-grid3-row {
+	border-width: 0px;
+}
+.x-grid3-col {
+    border-right: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+}
+
+.x-grid3-row.x-grid3-row-last .x-grid3-col {
+    border-bottom-width: 0px;
+}
+
+.x-grid3-hd-row td {
+	padding-right: 1px;
+}
+
+.ext-ie .x-grid3-hd-row td {
+	padding-right: 0px;
+}
+.x-grid3-hd-row td.x-grid3-cell-first {
+	border-left-width: 0px;
+}
+
 /*********** LOGIN ************/
 
 .login-container {
