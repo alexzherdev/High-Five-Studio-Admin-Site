@@ -8,7 +8,7 @@ class AdminshipsController < ApplicationController
   def by_month
     year = params[:year].to_i
     month = params[:month].to_i
-    adminships = Adminship.find :all, :conditions => ["MONTH(date) = ? and YEAR(date) = ?", month, year]
+    adminships = Adminship.find :all, :conditions => ["EXTRACT(month from date) = ? and EXTRACT(year from date) = ?", month, year]
     user_ids = User.all.collect(&:id)
     by_date = {}
     date = Date.new(year, month, 1)
@@ -31,21 +31,24 @@ class AdminshipsController < ApplicationController
     year = params[:year].to_i
     month = params[:month].to_i
     day = params[:adminships].delete(:date).to_i
-    adminships = Adminship.find :all, :conditions => ["MONTH(date) = ? and YEAR(date) = ? and DAY(date) = ?", month, year, day]
+    adminships = Adminship.find :all, :conditions => ["EXTRACT(month from date) = ? and EXTRACT(year from date) = ? and EXTRACT(day from date) = ?", month, year, day]
     by_user_ids = adminships.inject({}) { |h, a| h[a.user_id] = a; h }
     params[:adminships].each do |user_id, hours|
       user_id = user_id.to_i
       if by_user_ids.has_key? user_id
         adm = by_user_ids[user_id]
-        if hours == ""
+        if hours.blank?
           adm.destroy
         else
           adm.hours = hours
           adm.save
         end
       else
-        Adminship.create :date => Date.civil(year, month, day), :user_id => user_id, :hours => hours
+        unless hours.blank?
+          Adminship.create :date => Date.civil(year, month, day), :user_id => user_id, :hours => hours
+        end
       end
     end
+    render :json => { :success => true }
   end
 end
