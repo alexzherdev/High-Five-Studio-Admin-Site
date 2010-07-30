@@ -1,0 +1,29 @@
+<% javascript_tag do %>
+  Ext.onReady(function() {
+    createPurchasesPanel({
+      planned_store: {
+        root: 'purchases',
+        autoSave: true,
+        idProperty: 'id',
+        proxy: new Ext.data.HttpProxy({
+          api: {
+            read: { url: '<%= by_month_adminships_path %>', method: 'GET' },
+            update: '<%= save_adminships_path %>'
+          }
+        }),
+        fields: [
+          { name: 'id' }
+        ],
+        sortInfo: {
+          field: 'id',
+          direction: 'ASC'
+        },
+        writer: new Ext.data.JsonWriter({
+          encode: false,
+          listful: false,
+          writeAllFields: true
+        }),
+      }
+    });
+  });
+<% end %>

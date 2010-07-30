@@ -17,9 +17,8 @@ Ext.onReady(function() {
     
     addItem: function(attrs) {
       Ext.apply(attrs, {
-          iconCls: 'feed-icon',
+          iconCls: attrs.iconCls,
           leaf: true,
-          cls: 'menu-item',
           id: attrs.url
       });
       var node = new Ext.tree.TreeNode(attrs);

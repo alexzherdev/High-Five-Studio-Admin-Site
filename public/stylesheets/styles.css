@@ -19,7 +19,7 @@ a {
 }
 
 .x-grid3-row.x-grid3-row-last .x-grid3-col {
-    border-bottom-width: 0px;
+    /*border-bottom-width: 0px;*/
 }
 
 .x-grid3-hd-row td {
@@ -75,4 +75,20 @@ a {
   font-size: 14px;
   color: white;
   float: right;
+}
+
+.rehearsals-icon {
+  background-image: url('../images/calendar.png') !important;
+}
+
+.adminships-icon {
+  background-image: url('../images/clock.png') !important;
+}
+
+.purchases-icon {
+  background-image: url('../images/cart.png') !important;
+}
+
+.add-icon {
+  background-image: url('../images/add.png') !important;
 }

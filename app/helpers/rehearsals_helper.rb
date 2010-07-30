@@ -1,0 +1,2 @@
+module RehearsalsHelper
+end

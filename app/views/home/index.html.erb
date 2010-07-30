@@ -2,8 +2,21 @@
 <% javascript_tag do %>
   Ext.onReady(function() {
     Global.menu_panel.addItem({
+      url: '<%= url_for :controller => "rehearsals" %>',
+      text: 'Репы',
+      iconCls: 'rehearsals-icon'
+    });
+    
+    Global.menu_panel.addItem({
       url: '<%= adminships_url %>',
-      text: 'Администрирование'
+      text: 'Администрирование',
+      iconCls: 'adminships-icon'
+    });
+    
+    Global.menu_panel.addItem({
+      url: '<%= purchases_url %>',
+      text: 'Покупки',
+      iconCls: 'purchases-icon'
     });
   });
 <% end %>

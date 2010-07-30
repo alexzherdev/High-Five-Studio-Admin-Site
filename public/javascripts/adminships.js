@@ -35,7 +35,12 @@ createAdminshipsPanel = function(config) {
         }
         Global.adminships_panel.loadAdminships();
       }
-      },{ text: '', id: 'adminships_date', xtype: 'tbtext' },{
+      },{
+        id: 'adminships_date',
+        xtype: 'tbtext',
+        width: 80,
+        style: { 'text-align': 'center' }
+      },{
       text: '',
       iconCls: 'x-tbar-page-next',
       handler: function() {
@@ -63,7 +68,7 @@ createAdminshipsPanel = function(config) {
     //renderTo: 'adminships_container',
     
     updateDate: function() {
-      Ext.getCmp('adminships_date').setText('<b>' + Global.getAdminMonth() + '.' + Global.getAdminYear() + '</b>');
+      Ext.getCmp('adminships_date').setText('<p>' + Global.months[Global.getAdminMonth() - 1] + ' ' + Global.getAdminYear() + '</p>');
     },
     
     loadAdminships: function() {
